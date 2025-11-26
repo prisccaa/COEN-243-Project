@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 #include <ostream>
+#include <iomanip>
 using namespace std;
 
 class Patient{
@@ -97,21 +98,12 @@ class Doctor{
         double get_performanceBonus(){return bonusPercentage;}
         void set_performanceBonus(double pb){bonusPercentage = pb;}
 
-        // Other methods/functions
+        // Methods, just DECLARING them
         double CalculateCompensation(){
             return baseSalary * (1 + bonusPercentage);
         }
 
-        void Print_Doctor_Info(){
-            cout << "Doctor Name: " << firstName << " " << lastName << endl;
-            cout << "Doctor ID: " << ID << endl;
-            cout << "Specialty: " << specialty << endl;
-            cout << "Years of Experience: " << yearOfExperience << endl;
-            cout << "Base Salary: " << baseSalary << endl;
-            cout << "Performance Bonus: " << bonusPercentage << endl;
-            cout << "Total Salary: " << CalculateCompensation() << endl;
-        }
-};
+        void Print_Doctor_Info();
 
 class Hospital{
     private:
@@ -119,8 +111,8 @@ class Hospital{
         vector<Doctor> *dptr;  
     public:
 
-    // Constructor, use to initialize the pointers... which are pointing to vectors of objects
-    // ...
+    // DECLARING Constructor that reads files
+    Hospital(const string& fileName);
 
     // Methods and Functions:
     void Find_Oldest_Patient(){ 
