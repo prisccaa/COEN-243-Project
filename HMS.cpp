@@ -94,9 +94,7 @@ void Doctor::Print_Doctor_Info(){
     cout << "Total Salary: " << CalculateCompensation() << endl;
 }
 
-double Doctor::CalculateCompensation(){
-    return baseSalary * (1 + bonusPercentage);
-}
+
 
 // DEFINING CONSTRUCTOR
 // FOR HOSPITAL CLASS
@@ -108,7 +106,7 @@ Hospital::Hospital(const string& doctorFile, const string& patientFile){
     doctors = new vector<Doctor>();
 
     ifstream patFile("Patients.txt");
-    ifstream docFile("Doctors.txt");
+    
 
     if (!patFile){
         cout << "Error opening patient file!" << endl;
@@ -117,7 +115,7 @@ Hospital::Hospital(const string& doctorFile, const string& patientFile){
     int numPatients;
     patFile >> numPatients;
 
-    for (size_t i = 0; i < numPatients; i++){
+    for (int i = 0; i < numPatients; i++){
         
         Patient p;
 
@@ -146,14 +144,18 @@ Hospital::Hospital(const string& doctorFile, const string& patientFile){
         patients->push_back(p);
     }
 
+
+    //For load doctors
+    ifstream docFile("Doctors.txt");
     if (!docFile){
         cout << "Error opening doctor file!" << endl;
     }
+    else{
 
     int numDoctors;
     docFile >> numDoctors;
 
-    for (size_t i = 0; i < numDoctors; i++){
+    for (int i = 0; i < numDoctors; i++){
         
         Doctor d;
         
@@ -179,8 +181,7 @@ Hospital::Hospital(const string& doctorFile, const string& patientFile){
     }
     patFile.close();
     docFile.close();
-    delete patients;
-    delete doctors;
+    
 }
 
 // Hospital::~Hospital() {
@@ -189,6 +190,7 @@ Hospital::Hospital(const string& doctorFile, const string& patientFile){
 // }
 
 // Member functions
+    // find oldest Patient:
 
 void Hospital::Find_Oldest_Patient(){
     if (patients->empty()) {
@@ -197,7 +199,7 @@ void Hospital::Find_Oldest_Patient(){
     }
 
     int oldestIndex = 0;
-    for (size_t i = 1; i < patients->size(); ++i) {
+    for (int i = 1; i <(int) patients->size(); ++i) {
         if ((*patients)[i].get_dateOfBirth() < (*patients)[oldestIndex].get_dateOfBirth()) {
             oldestIndex = i;
         }
@@ -209,7 +211,7 @@ void Hospital::Find_Oldest_Patient(){
 //count patient whose status is "Critical"
 int Hospital:: Count_Critical_Patients(){
     int coutn =0;
-for ( itn i =0; i< (int) ptr->size(); ++i){ // yes i used arrows... I'm lazy
+for ( int i =0; i< (int) ptr->size(); ++i){ // yes i used arrows... I'm lazy
 if ((*ptr)[i].Patient_Status() == "Critical"){
 ++count;
 }
@@ -219,9 +221,9 @@ return count;
 
 // count patients who are still at the hospital 
 int Hospital::Count_In_Patients(){
-    itn count = 0;
+    int count = 0;
 for (int i =0; i<(int)ptr->size(); ++i){
-if (!(*ptr)[i].IsDicharged()){
+if (!(*patients)[i].IsDicharged()){
 ++count;
 }
 }
