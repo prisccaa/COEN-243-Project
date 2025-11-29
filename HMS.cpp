@@ -34,10 +34,10 @@ bool Patient::IsDischarged(){
     }
 
 string Patient::Patient_Status(){ // Assuming there is no typo...
-    if (diagnosis.find("critical")){
+    if (diagnosis.find("critical")! = string::npos){
         return "Critical";
     }
-    else if(diagnosis.find("moderate")){
+    else if(diagnosis.find("moderate") !=sting::npos){
         return "Moderate"; 
     }
     else {
@@ -59,20 +59,30 @@ void Patient::Print_Patient_Info(){
 // DEFINING METHODS   
 // FOR DOCTOR CLASS
 
-string get_firstName();
-void set_firstName(string fN);
-string get_lastName();
-void set_lastName(string lN);
-long int get_ID();
-void set_ID(long int id);
-string get_specialty();
-void set_specialty(string spec);
-int get_yearOfExperience();
-void set_yearOfExperience(int yoe);
-double get_baseSalary();
-void set_baseSalary(double bs);
-double get_performanceBonus();
-void set_performanceBonus(double pb);
+string Doctor::get_firstName() { return firstName; }
+void Doctor::set_firstName(string fN) { firstName = fN; }
+
+string Doctor::get_lastName() { return lastName; }
+void Doctor::set_lastName(string lN) { lastName = lN; }
+
+long int Doctor::get_ID() { return ID; }
+void Doctor::set_ID(long int id) { ID = id; }
+
+string Doctor::get_specialty() { return specialty; }
+void Doctor::set_specialty(string spec) { specialty = spec; }
+
+int Doctor::get_yearOfExperience() { return yearOfExperience; }
+void Doctor::set_yearOfExperience(int yoe) { yearOfExperience = yoe; }
+
+double Doctor::get_baseSalary() { return baseSalary; }
+void Doctor::set_baseSalary(double bs) { baseSalary = bs; }
+
+double Doctor::get_performanceBonus() { return bonusPercentage; }
+void Doctor::set_performanceBonus(double pb) { bonusPercentage = pb; }
+
+double Doctor::CalculateCompensation() {
+    return baseSalary * (1 + bonusPercentage);
+}
 
 void Doctor::Print_Doctor_Info(){
     cout << "Doctor Name: " << firstName << " " << lastName << endl;
