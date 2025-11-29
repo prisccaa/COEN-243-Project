@@ -21,24 +21,24 @@ class Patient{
         string dischargeDate;
     
     public: // Getter and Setter methods (could put them in the cpp file too)
-        string get_firstName(){return firstName;}
-        void set_firstName(string fN){firstName = fN;}
-        string get_lastName(){return lastName;}
-        void set_lastName(string lN){lastName = lN;}
-        long int get_ID(){return ID;}
-        void set_ID(long int id){ID = id;}
-        long int get_assignedDoctor(){return assignedDoctor;}
-        void set_assignedDoctor(long int aD){assignedDoctor = aD;}
-        string get_dateOfBirth(){return dateOfBirth;}
-        void set_dateOfBirth(string dob){dateOfBirth = dob;}
-        string get_bloodType(){return bloodType;}
-        void set_bloodType(string bt){bloodType = bt;}
-        string get_diagnosis(){return diagnosis;}
-        void set_diagnosis(string diag){diagnosis = diag;}
-        string get_dateOfAdmission(){return dateOfAdmission;}
-        void set_dateOfAdmission(string doa){dateOfAdmission = doa;}
-        string get_dischargeDate(){return dischargeDate;}
-        void set_dischargeDate(string dd){dischargeDate = dd;}
+        string get_firstName();
+        void set_firstName(string fN);
+        string get_lastName();
+        void set_lastName(string lN);
+        long int get_ID();
+        void set_ID(long int id);
+        long int get_assignedDoctor();
+        void set_assignedDoctor(long int aD);
+        string get_dateOfBirth();
+        void set_dateOfBirth(string dob);
+        string get_bloodType();
+        void set_bloodType(string bt);
+        string get_diagnosis();
+        void set_diagnosis(string diag);
+        string get_dateOfAdmission();
+        void set_dateOfAdmission(string doa);
+        string get_dischargeDate();
+        void set_dischargeDate(string dd);
 
         // Methods, only DECLARING them
         
@@ -63,20 +63,20 @@ class Doctor{
 
     public:
         // Getter and Setter methods (could put them in the cpp file too)
-        string get_firstName(){return firstName;}
-        void set_firstName(string fN){firstName = fN;}
-        string get_lastName(){return lastName;}
-        void set_lastName(string lN){lastName = lN;}
-        long int get_ID(){return ID;}
-        void set_ID(long int id){ID = id;}
-        string get_specialty(){return specialty;}
-        void set_specialty(string spec){specialty = spec;}
-        int get_yearOfExperience(){return yearOfExperience;}
-        void set_yearOfExperience(int yoe){yearOfExperience = yoe;}
-        double get_baseSalary(){return baseSalary;}
-        void set_baseSalary(double bs){baseSalary = bs;}
-        double get_performanceBonus(){return bonusPercentage;}
-        void set_performanceBonus(double pb){bonusPercentage = pb;}
+        string get_firstName();
+        void set_firstName(string fN);
+        string get_lastName();
+        void set_lastName(string lN);
+        long int get_ID();
+        void set_ID(long int id);
+        string get_specialty();
+        void set_specialty(string spec);
+        int get_yearOfExperience();
+        void set_yearOfExperience(int yoe);
+        double get_baseSalary();
+        void set_baseSalary(double bs);
+        double get_performanceBonus();
+        void set_performanceBonus(double pb);
 
         // Methods, just DECLARING them
         double CalculateCompensation();
@@ -91,7 +91,7 @@ class Hospital{
     public:
 
     // DECLARING Constructor that reads files
-    Hospital(const string& fileName);
+    Hospital(const string& doctorFile, const string& patientFile);
 
     // Methods and Functions:
     void Find_Oldest_Patient();
@@ -101,9 +101,5 @@ class Hospital{
     void Show_Patient_by_ID(int id);
     void Show_Doctor_by_ID();
 };
-
-
-
-
 
 #endif // HMS_H
