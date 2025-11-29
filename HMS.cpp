@@ -34,10 +34,10 @@ bool Patient::IsDischarged(){
     }
 
 string Patient::Patient_Status(){ // Assuming there is no typo...
-    if (diagnosis.find("critical")! = string::npos){
+    if (diagnosis.find("critical")!= string::npos){
         return "Critical";
     }
-    else if(diagnosis.find("moderate") !=sting::npos){
+    else if(diagnosis.find("moderate") !=string::npos){
         return "Moderate"; 
     }
     else {
@@ -100,7 +100,7 @@ void Doctor::Print_Doctor_Info(){
 // FOR HOSPITAL CLASS
 
 // Defining constructor that reads files
-Hospital::Hospital(const string& doctorFile, const string& patientFile){
+Hospital::Hospital(){
     
     patients = new vector<Patient>();
     doctors = new vector<Doctor>();
@@ -182,6 +182,7 @@ Hospital::Hospital(const string& doctorFile, const string& patientFile){
     patFile.close();
     docFile.close();
     
+    }
 }
 
 Hospital::~Hospital() {
@@ -209,24 +210,26 @@ void Hospital::Find_Oldest_Patient(){
 }
 //count patient whose status is "Critical"
 int Hospital:: Count_Critical_Patients(){
-    int coutn =0;
-for ( int i =0; i< (int) ptr->size(); ++i){ // yes i used arrows... I'm lazy
-if ((*ptr)[i].Patient_Status() == "Critical"){
-++count;
-}
-}
-return count;
+
+    int count = 0;
+    for ( int i =0; i< (int) patients->size(); ++i){ // yes i used arrows... I'm lazy
+        if ((*patients)[i].Patient_Status() == "Critical"){
+        ++count;
+        }
+    }
+    
+    return count;
 }
 
 // count patients who are still at the hospital 
 int Hospital::Count_In_Patients(){
     int count = 0;
-for (int i =0; i<(int)ptr->size(); ++i){
-if (!(*patients)[i].IsDicharged()){
-++count;
-}
-}
-return count;
+    for (int i =0; i<(int)patients->size(); ++i){
+        if (!(*patients)[i].IsDischarged()){
+        ++count;
+        }
+    }
+    return count;
 }
     //Doctors By Speciality
 
@@ -241,7 +244,7 @@ void Hospital::Doctors_By_Specialty(string& s){
 }
 
     // Show Assigned Doctor(Patient ID)
-void Hospital::Show_Assigned_Doctor(int patientID) {
+void Hospital::Show_Assigned_Doctor(long int patientID) {
     // find patient first
     for (int i = 0; i < (int)patients->size(); ++i) {
         if ((*patients)[i].get_ID() == patientID) {
@@ -269,7 +272,7 @@ void Hospital::Show_Assigned_Doctor(int patientID) {
 
 // SHow Assigned patient ( Doctor ID)
 
-void Hospital::Show_Assigned_Patients(int doctorID) {
+void Hospital::Show_Assigned_Patients(long int doctorID) {
     bool found = false;
     for (int i = 0; i < (int)patients->size(); ++i) {
         if ((*patients)[i].get_assignedDoctor() == doctorID) {
@@ -281,24 +284,25 @@ void Hospital::Show_Assigned_Patients(int doctorID) {
         }
     }
     if (!found) {
-        cout << "no patients assigned" << endl;
+        cout << "No patients assigned" << endl;
     }
 }
 
 // Show information about the patient with a given ID
-void Hospital::Show_Patient_by_Id(long int id){
-    for (int i =0; i<(int)patients->size();++i{
+void Hospital::Show_Patient_by_ID(long int id){
+    for (int i =0; i < (int)patients->size(); ++i){
         if ((*patients)[i].get_ID()==id){
         (*patients)[i].Print_Patient_Info();
-        return;}
-}
-count<<"No patient has the provided ID"<<enl;
+        return;
+        }
+    }
+    cout <<"No patient has the provided ID"<< endl;
 }
 // Show information about the doctor with a given ID
 void Hospital::Show_Doctor_by_ID(long int id) {
     for (int i = 0; i < (int)doctors->size(); ++i) {
         if ((*doctors)[i].get_ID() == id) {
-            (*doctos)[i].Print_Doctor_Info();
+            (*doctors)[i].Print_Doctor_Info();
             return;
         }
     }
@@ -437,4 +441,3 @@ void Hospital::Append_Doctor_To_File(){
 
     doctorFile.close();
 }   
-
