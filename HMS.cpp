@@ -240,33 +240,48 @@ void Hospital::Doctors_By_Specialty(string& s){
     }
 }
 
-void Hospital::Show_Assigned_Doctor(long int patientID){
-    
-    long int doctorID;
-    
-    for (size_t i = 0; i < patients->size(); i++){
-        if ((*patients)[i].get_assignedDoctor() == patientID){
-            doctorID = (*patients)[i].get_assignedDoctor();
+    // Show Assigned Doctor(Patient ID)
+void Hospital::Show_Assigned_Doctor(int patientID) {
+    // find patient first
+    for (int i = 0; i < (int)patients->size(); ++i) {
+        if ((*patients)[i].get_ID() == patientID) {
+            long int docID = (*patients)[i].get_assignedDoctor();
+            // if docID is -1, no assigned doctor
+            if (docID == -1) {
+                cout << "This patient has no assigned doctor." << endl;
+                return;
+            }
+            // find doctor with that ID
+            for (int j = 0; j < (int)doctors->size(); ++j) {
+                if ((*doctors)[j].get_ID() == docID) {
+                    cout << "Assigned doctor for patient " << patientID << " is:" << endl;
+                    (*doctors)[j].Print_Doctor_Info();
+                    return;
+                }
+            }
+            cout << "No doctor with the assigned ID was found." << endl;
+            return;
         }
     }
+    cout << "No patient has the provided ID" << endl;
+}
 
-    for (size_t i = 0; i < doctors->size(); i++){
-        if ((*doctors)[i].get_ID() == doctorID){
-            cout << (*doctors)[i].get_firstName() << " " << (*doctors)[i].get_lastName() << endl;
+
+// SHow Assigned patient ( Doctor ID)
+
+void Hospital::Show_Assigned_Patients(int doctorID) {
+    bool found = false;
+    for (int i = 0; i < (int)patients->size(); ++i) {
+        if ((*patients)[i].get_assignedDoctor() == doctorID) {
+            if (!found) {
+                cout << "Patients assigned to doctor ID " << doctorID << ":" << endl;
+            }
+            (*patients)[i].Print_Patient_Info();
+            found = true;
         }
     }
-}  
-
-void Hospital::Show_Assigned_Patients(long int doctorID){
-    
-    for (size_t i = 0; i < patients->size(); i++){
-        if ((*patients)[i].get_assignedDoctor() == doctorID){
-            cout << "Patient Name: " << (*patients)[i].get_firstName() << " " << (*patients)[i].get_lastName() << endl;
-        }
-    }
-
-    if(patients->empty()){
-        cout << "No patients assigned to this doctor." << endl;
+    if (!found) {
+        cout << "no patients assigned" << endl;
     }
 }
 
