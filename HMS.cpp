@@ -371,9 +371,9 @@ void Hospital::Append_Patient_To_File(){
         }
 
         for(size_t i = 0; i < (*patients).size(); i++){
-            patientFile << p.get_firstName() << " " << p.get_lastName() << " " << p.get_ID() << 
-            p.get_assignedDoctor() << p.get_dateOfBirth() << p.get_bloodType() << p.get_diagnosis() <<
-            p.get_dateOfAdmission() << p.get_dischargeDate() << endl; 
+            patientFile << p.get_firstName() << " " << p.get_lastName() << " " << p.get_ID() << " " <<
+            p.get_assignedDoctor() << " " << p.get_dateOfBirth() << " " << p.get_bloodType() << " " << p.get_diagnosis() << " " <<
+            p.get_dateOfAdmission() << " " << p.get_dischargeDate() << endl; 
         }
     }
 
@@ -434,8 +434,8 @@ void Hospital::Append_Doctor_To_File(){
         }
 
         for(size_t i = 0; i < (*patients).size(); i++){
-            doctorFile << d.get_firstName() << " " << d.get_lastName() << " " << d.get_ID() << 
-            d.get_specialty() << d.get_yearOfExperience() << d.get_baseSalary() << d.get_performanceBonus() << endl;
+            doctorFile << d.get_firstName() << " " << d.get_lastName() << " " << d.get_ID() << " " <<
+            d.get_specialty() << " " << d.get_yearOfExperience() << " " << d.get_baseSalary() << " " << d.get_performanceBonus() << endl;
         }
     }
 
