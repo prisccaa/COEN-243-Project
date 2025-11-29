@@ -90,8 +90,7 @@ double Doctor::CalculateCompensation(){
 // FOR HOSPITAL CLASS
 Hospital::Hospital(const string& doctorFile, const string& patientFile){
     
-    ptr = new vector<Patient>;
-    dptr = new vector<Doctor>;
+   
     // load patients
     ifstram pFile(patientsFile.c_str());
     if (!pFile) {
@@ -126,7 +125,38 @@ p.set_diagnosis(diag);
 p.set_dateOfAdmission(doa);
 p.set_dischargeDate(dd);
 
-ptr->push_back(p);}
+ptr.push_back(p);}
     }
-//Loar
+//Load dcotors
+ifstream dFile( doctorFile.C_str());
+if (!dFile){
+cout<<"Error: could not open doctors file: "<<doctorFile <<endl;}
+else{ 
+int count;
+dFile>> count; // first value = number of doctors
+ for (int i=0; i< coutn; ++i){
+string firstName, lastName;
+long int id;
+string spec;
+int years;
+double base;
+double bonus;
+
+// Assume no spaces ( use undescore)
+dFiel >>firstName >> lastName
+    >> id
+    >>spec
+    >>years
+    >>base >>bonus;
+
+Doctor d;
+d.set_firstName(firstName);
+d.set_lastName(lastName);
+d.set_Id(id);
+d.set_specialty(spec);
+d.set_yearsOfExperience(years);
+d.set_baseSalary(base);
+d.set_perfomanceBonuce(bonus);
+dptr.push_back(d) // againnnnn, normal vector.
+    
 
