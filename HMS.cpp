@@ -305,3 +305,136 @@ void Hospital::Show_Doctor_by_ID(long int id) {
     cout << "No doctor has the provided ID" << endl;
 }
 
+void Hospital::Append_Patient_To_File(){
+    
+    ofstream patientFile("patients.txt");
+    if (!patientFile){
+        cout << "Error opening patient file!" << endl;
+    }
+    
+    cout << "How many patients do you want to add? " << endl;
+    cout << "Number of patients: ";
+    int n;
+    cin >> n;
+
+    for (size_t i = 0; i < n; i++){
+        
+        string fN;
+        cout << "Enter the first name: ";
+        cin >> fN;
+        string lN;
+        cout << "Enter the last name: ";
+        cin >> lN;
+        long int id;
+        cout << "Enter the ID: ";
+        cin >> id;
+        long int aD;
+        cout << "Enter the assigned doctor: ";
+        cin >> aD;
+        string dob;
+        cout << "Enter the date of birth: ";
+        cin >> dob;
+        string bt;
+        cout << "Enter the blood type: ";
+        cin >> bt;
+        string diag;
+        cout << "Enter the diagnosis: ";
+        cin >> diag;
+        string doa;
+        cout << "Enter the date of admission: ";
+        cin >> doa;
+        string dd;
+        cout << "Enter the date of discharge: ";
+        cin >> dd;
+
+        Patient p;
+
+        p.set_firstName(fN);
+        p.set_lastName(lN);
+        p.set_ID(id);
+        p.set_assignedDoctor(aD);
+        p.set_dateOfBirth(dob);
+        p.set_bloodType(bt);
+        p.set_diagnosis(diag);
+        p.set_dateOfAdmission(doa);
+        p.set_dischargeDate(dd);
+
+        patients->push_back(p);
+
+        ofstream patientFile("patients.txt");
+        if (!patientFile){
+            cout << "Error opening patient file!" << endl;
+        }
+
+        for(size_t i = 0; i < (*patients).size(); i++){
+            patientFile << p.get_firstName() << " " << p.get_lastName() << " " << p.get_ID() << 
+            p.get_assignedDoctor() << p.get_dateOfBirth() << p.get_bloodType() << p.get_diagnosis() <<
+            p.get_dateOfAdmission() << p.get_dischargeDate() << endl; 
+        }
+    }
+
+    patientFile.close();
+} 
+
+void Hospital::Append_Doctor_To_File(){
+    
+    ofstream doctorFile("doctors.txt");
+    if (!doctorFile){
+        cout << "Error opening doctor file!" << endl;
+    }
+    
+    cout << "How many doctors do you want to add? " << endl;
+    cout << "Number of doctors: ";
+    int n;
+    cin >> n;
+
+    for (size_t i = 0; i < n; i++){
+        
+        string fN;
+        cout << "Enter the first name: ";
+        cin >> fN;
+        string lN;
+        cout << "Enter the last name: ";
+        cin >> lN;
+        long int id;
+        cout << "Enter the ID: ";
+        cin >> id;
+        string spec;
+        cout << "Enter the specialty: ";
+        cin >> spec;
+        int yoe;
+        cout << "Enter the years of experience ";
+        cin >> yoe;
+        double bs;
+        cout << "Enter the base salary: ";
+        cin >> bs;
+        double pb;
+        cout << "Enter the performance bonus: ";
+        cin >> pb;
+
+        Doctor d;
+
+        d.set_firstName(fN);
+        d.set_lastName(lN);
+        d.set_ID(id);
+        d.set_specialty(spec);
+        d.set_yearOfExperience(yoe);
+        d.set_baseSalary(bs);
+        d.set_performanceBonus(pb);
+
+        doctors->push_back(d);
+
+        ofstream doctorFile("doctors.txt");
+        if (!doctorFile){
+            cout << "Error opening patient file!" << endl;
+        }
+
+        for(size_t i = 0; i < (*patients).size(); i++){
+            doctorFile << d.get_firstName() << " " << d.get_lastName() << " " << d.get_ID() << 
+            d.get_specialty() << d.get_yearOfExperience() << d.get_baseSalary() << d.get_performanceBonus() << endl;
+        }
+    }
+
+    doctorFile.close();
+}   
+
