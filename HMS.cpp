@@ -100,12 +100,12 @@ void Doctor::Print_Doctor_Info(){
 // FOR HOSPITAL CLASS
 
 // Defining constructor that reads files
-Hospital::Hospital(){
+Hospital::Hospital(string patientFileName, string doctorFileName){
     
     patients = new vector<Patient>();
     doctors = new vector<Doctor>();
 
-    ifstream patFile("Patients.txt");
+    ifstream patFile(patientFileName);
     
 
     if (!patFile){
@@ -146,7 +146,7 @@ Hospital::Hospital(){
 
 
     //For load doctors
-    ifstream docFile("Doctors.txt");
+    ifstream docFile(doctorFileName);
     if (!docFile){
         cout << "Error opening doctor file!" << endl;
     }
