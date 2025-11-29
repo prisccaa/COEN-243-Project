@@ -1,11 +1,12 @@
 #include "HMS.h"
 #include <string>
 #include <fstream>
+#include <ostream>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 // DEFINING METHODS
-
 // FOR PATIENT CLASS
 
 string Patient::get_firstName(){return firstName;}
@@ -54,7 +55,8 @@ void Patient::Print_Patient_Info(){
     cout << "Date of Admission: " << dateOfAdmission << endl;
     cout << "Discharge Date: " << dischargeDate << endl;
 }
-    
+
+// DEFINING METHODS   
 // FOR DOCTOR CLASS
 
 string get_firstName();
@@ -88,75 +90,112 @@ double Doctor::CalculateCompensation(){
 
 // DEFINING CONSTRUCTOR
 // FOR HOSPITAL CLASS
+
+// Defining constructor that reads files
 Hospital::Hospital(const string& doctorFile, const string& patientFile){
     
-   
-    // load patients
-    ifstram pFile(patientsFile.c_str());
-    if (!pFile) {
-        cout << "Error: could not open patients file:"<< patientsFile << endl;
-    
-} else{
-int count; 
-pFile << count; // first value= number of patietns
+    patients = new vector<Patient>();
+    doctors = new vector<Doctor>();
 
-for ( int i=0; i<coutn; ++i){
-string fistName, lastName;
-long int id; 
-long int assigneDoc;
-string dob;
-string blood;
-string diag;
-string doa;
-string dd;
+    ifstream patFile("Patients.txt");
+    ifstream docFile("Doctors.txt");
 
-// Assume no space for strings ( use undescores) 
-pFile >> fistName >> LastName
-    >> id >> assignedDoc
-    >> dob>> blood
-    >>diag
-    >>doa >>dd;
-Patient p;
-p.set_fistName(fisrtName);
-p.set_lastName(LastName);
-p.set_ID(id);
-p.set_dateOfBirth(dob);
-p.set_diagnosis(diag);
-p.set_dateOfAdmission(doa);
-p.set_dischargeDate(dd);
-
-ptr.push_back(p);}
+    if (!patFile){
+        cout << "Error opening patient file!" << endl;
     }
-//Load dcotors
-ifstream dFile( doctorFile.C_str());
-if (!dFile){
-cout<<"Error: could not open doctors file: "<<doctorFile <<endl;}
-else{ 
-int count;
-dFile>> count; // first value = number of doctors
- for (int i=0; i< coutn; ++i){
-string firstName, lastName;
-long int id;
-string spec;
-int years;
-double base;
-double bonus;
 
-// Assume no spaces ( use undescore)
-dFiel >>firstName >> lastName
-    >> id
-    >>spec
-    >>years
-    >>base >>bonus;
+    int numPatients;
+    patFile >> numPatients;
 
-Doctor d;
-d.set_firstName(firstName);
-d.set_lastName(lastName);
-d.set_Id(id);
-d.set_specialty(spec);
-d.set_yearsOfExperience(years);
-d.set_baseSalary(base);
-d.set_perfomanceBonuce(bonus);
-dptr.push_back(d) // againnnnn, normal vector.
-    
+    for (size_t i = 0; i < numPatients; i++){
+        
+        Patient p;
+
+        string fN;
+        string lN;
+        long int id;
+        long int aD;
+        string dob;
+        string bt;
+        string diag;
+        string doa;
+        string dd;
+        
+        patFile >> fN >> lN >> id >> aD >> dob >> bt >> diag >> doa >> dd;
+
+        p.set_firstName(fN);
+        p.set_lastName(lN);
+        p.set_ID(id);
+        p.set_assignedDoctor(aD);
+        p.set_dateOfBirth(dob);
+        p.set_bloodType(bt);
+        p.set_diagnosis(diag);
+        p.set_dateOfAdmission(doa);
+        p.set_dischargeDate(dd);
+
+        patients->push_back(p);
+    }
+
+    if (!docFile){
+        cout << "Error opening doctor file!" << endl;
+    }
+
+    int numDoctors;
+    docFile >> numDoctors;
+
+    for (size_t i = 0; i < numDoctors; i++){
+        
+        Doctor d;
+        
+        string fN;
+        string lN;
+        long int id;
+        string spec;
+        int yoe;
+        double bs;
+        double pb;
+        
+        docFile >> fN >> lN >> id >> spec >> yoe >> bs >> pb;
+
+        d.set_firstName(fN);
+        d.set_lastName(lN);
+        d.set_ID(id);
+        d.set_specialty(spec);
+        d.set_yearOfExperience(yoe);
+        d.set_baseSalary(bs);
+        d.set_performanceBonus(pb);
+
+        doctors->push_back(d);
+    }
+    patFile.close();
+    docFile.close();
+    delete patients;
+    delete doctors;
+}
+
+// Hospital::~Hospital() {
+//     delete patients;
+//     delete doctors;
+// }
+
+// Member functions
+
+void Hospital::Find_Oldest_Patient(){
+    if (patients->empty()) {
+        cout << "No patients available." << endl;
+        return;
+    }
+
+    int oldestIndex = 0;
+    for (size_t i = 1; i < patients->size(); ++i) {
+        if ((*patients)[i].get_dateOfBirth() < (*patients)[oldestIndex].get_dateOfBirth()) {
+            oldestIndex = i;
+        }
+    }
+
+    cout << "The oldest patient is: " << endl;  
+    (*patients)[oldestIndex].Print_Patient_Info();
+}
+
+
 
