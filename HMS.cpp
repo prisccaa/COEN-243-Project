@@ -196,6 +196,27 @@ void Hospital::Find_Oldest_Patient(){
     cout << "The oldest patient is: " << endl;  
     (*patients)[oldestIndex].Print_Patient_Info();
 }
+//count patient whose status is "Critical"
+int Hospital:: Count_Critical_Patients(){
+    int coutn =0;
+for ( itn i =0; i< (int) ptr->size(); ++i){ // yes i used arrows... I'm lazy
+if ((*ptr)[i].Patient_Status() == "Critical"){
+++count;
+}
+}
+return count;
+}
+
+// count patients who are still at the hospital 
+int Hospital::Count_In_Patients(){
+    itn count = 0;
+for (int i =0; i<(int)ptr->size(); ++i){
+if (!(*ptr)[i].IsDicharged()){
+++count;
+}
+}
+return count;
+}
 
 
 
