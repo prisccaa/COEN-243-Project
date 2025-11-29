@@ -257,6 +257,19 @@ void Hospital::Show_Assigned_Doctor(long int patientID){
     }
 }  
 
+void Hospital::Show_Assigned_Patients(long int doctorID){
+    
+    for (size_t i = 0; i < patients->size(); i++){
+        if ((*patients)[i].get_assignedDoctor() == doctorID){
+            cout << "Patient Name: " << (*patients)[i].get_firstName() << " " << (*patients)[i].get_lastName() << endl;
+        }
+    }
+
+    if(patients->empty()){
+        cout << "No patients assigned to this doctor." << endl;
+    }
+}
+
 // Show information about the patient with a given ID
 void Hospital::Show_Patient_by_Id(long int id){
     for (int i =0; i<(int)ptr->size();++i{
