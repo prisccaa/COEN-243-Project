@@ -20,7 +20,7 @@ class Patient{
         string dateOfAdmission;
         string dischargeDate;
     
-    public: // Getter and Setter methods
+    public: // Getter and Setter methods (could put them in the cpp file too)
         string get_firstName(){return firstName;}
         void set_firstName(string fN){firstName = fN;}
         string get_lastName(){return lastName;}
@@ -40,40 +40,18 @@ class Patient{
         string get_dischargeDate(){return dischargeDate;}
         void set_dischargeDate(string dd){dischargeDate = dd;}
 
-        // Other methods/functions
+        // Methods, only DECLARING them
+        
         // Checks if the patient is discharged:
-        bool IsDischarged(){
-            if(dischargeDate != "-1"){return true;}
-            else{return false;}
-        }
-
+        bool IsDischarged();
         // Returns the status based on the diagnosis:
-        string Patient_Status(){ // Assuming there is no typo...
-            if (diagnosis.find("critical")){
-                return "Critical";
-            }
-            else if(diagnosis.find("moderate")){
-                return "Moderate"; 
-            }
-            else {
-                return "Stable";
-            }
-        }
-
+        string Patient_Status(); // Assuming there is no typo...
         // Displays all the patient’s information of the data members:
-        void Print_Patient_Info(){
-            cout << "Patient Name: " << firstName << " " << lastName << endl;
-            cout << "Patient ID: " << ID << endl;
-            cout << "Assigned Doctor ID: " << assignedDoctor << endl;
-            cout << "Date of Birth: " << dateOfBirth << endl;
-            cout << "Blood Type: " << bloodType << endl;
-            cout << "Diagnosis: " << diagnosis << endl;
-            cout << "Date of Admission: " << dateOfAdmission << endl;
-            cout << "Discharge Date: " << dischargeDate << endl;
-        }
+        void Print_Patient_Info();
 };
 
 class Doctor{
+    // Doctor attributes
     private:
         string firstName;
         string lastName;
@@ -82,7 +60,9 @@ class Doctor{
         int yearOfExperience;
         double baseSalary;
         double bonusPercentage;
+
     public:
+        // Getter and Setter methods (could put them in the cpp file too)
         string get_firstName(){return firstName;}
         void set_firstName(string fN){firstName = fN;}
         string get_lastName(){return lastName;}
@@ -99,11 +79,10 @@ class Doctor{
         void set_performanceBonus(double pb){bonusPercentage = pb;}
 
         // Methods, just DECLARING them
-        double CalculateCompensation(){
-            return baseSalary * (1 + bonusPercentage);
-        }
-
+        double CalculateCompensation();
         void Print_Doctor_Info();
+
+};
 
 class Hospital{
     private:
@@ -115,27 +94,12 @@ class Hospital{
     Hospital(const string& fileName);
 
     // Methods and Functions:
-    void Find_Oldest_Patient(){ 
-
-    }
-    int Count_Critical_Patients(){
-
-        return 0;
-    }
-    int Count_In_Patients(){
-
-        return 0;
-    }
-    void Doctors_By_Specialty(){
-
-    }
-    void Show_Patient_by_ID(int id){
-        
-    }
-    void Show_Doctor_by_ID(){
-
-    }
-    
+    void Find_Oldest_Patient();
+    int Count_Critical_Patients();
+    int Count_In_Patients();
+    void Doctors_By_Specialty();
+    void Show_Patient_by_ID(int id);
+    void Show_Doctor_by_ID();
 };
 
 
