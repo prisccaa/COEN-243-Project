@@ -1,7 +1,7 @@
 #include "HMS.h"
 #include <string>
 #include <fstream>
-#include <ostream>
+#include <iostream>
 using namespace std;
 
 // DEFINING METHODS
@@ -90,4 +90,43 @@ double Doctor::CalculateCompensation(){
 // FOR HOSPITAL CLASS
 Hospital::Hospital(const string& doctorFile, const string& patientFile){
     
-}
+    ptr = new vector<Patient>;
+    dptr = new vector<Doctor>;
+    // load patients
+    ifstram pFile(patientsFile.c_str());
+    if (!pFile) {
+        cout << "Error: could not open patients file:"<< patientsFile << endl;
+    
+} else{
+int count; 
+pFile << count; // first value= number of patietns
+
+for ( int i=0; i<coutn; ++i){
+string fistName, lastName;
+long int id; 
+long int assigneDoc;
+string dob;
+string blood;
+string diag;
+string doa;
+string dd;
+
+// Assume no space for strings ( use undescores) 
+pFile >> fistName >> LastName
+    >> id >> assignedDoc
+    >> dob>> blood
+    >>diag
+    >>doa >>dd;
+Patient p;
+p.set_fistName(fisrtName);
+p.set_lastName(LastName);
+p.set_ID(id);
+p.set_dateOfBirth(dob);
+p.set_diagnosis(diag);
+p.set_dateOfAdmission(doa);
+p.set_dischargeDate(dd);
+
+ptr->push_back(p);}
+    }
+//Loar
+
