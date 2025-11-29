@@ -39,16 +39,15 @@ class Patient{
 
         // Default Constructor with parameter initialization
         Patient();
-        Patient() : firstName(""), lastName(""), ID(0), assignedDoctor(0), dateOfBirth(""), bloodType(""), diagnosis(""), dateOfAdmission(""), dischargeDate("-1") {}
-        Patient(const string &firstName, 
-        const string &lastName,
-        long ID,
-        long assignedDoctor,
-        const string &dateOfBirth,
-        const string &bloodType,
-        const string &diagnosis,
-        const string &dateOfAdmission, 
-        const string &dischargeDate);
+        // Patient(const string &firstName, 
+        // const string &lastName,
+        // long ID,
+        // long assignedDoctor,
+        // const string &dateOfBirth,
+        // const string &bloodType,
+        // const string &diagnosis,
+        // const string &dateOfAdmission, 
+        // const string &dischargeDate);
 
         // Methods, only DECLARING them
         // Checks if the patient is discharged:
@@ -88,15 +87,14 @@ class Doctor{
         void set_performanceBonus(double pb);
 
         Doctor();
-        Doctor() : firstName(""), lastName(""), ID(0), specialty(""), yearOfExperience(0), baseSalary(0.0), bonusPercentage(0.0) {}
-        Doctor(const string &firstName, 
-        const string &lastName,
-        long ID,
-        long specialty,
-        const string &yearOfExperience,
-        const string &baseSalary,
-        const string &diagnosis,
-        const string &bonusPercentage);
+        // Doctor(const string &firstName, 
+        // const string &lastName,
+        // long ID,
+        // long specialty,
+        // const string &yearOfExperience,
+        // const string &baseSalary,
+        // const string &diagnosis,
+        // const string &bonusPercentage);
 
         // Methods, just DECLARING them
         double CalculateCompensation();
@@ -113,6 +111,7 @@ class Hospital{
 
     // DECLARING Constructor that reads files
     Hospital();
+    ~Hospital();
     Hospital(string patientFileName, string doctorFileName);
 
     // Methods and Functions:
