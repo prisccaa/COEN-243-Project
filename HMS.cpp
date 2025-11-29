@@ -230,6 +230,33 @@ if (!(*patients)[i].IsDicharged()){
 return count;
 }
 
+void Hospital::Doctors_By_Specialty(string& s){
+
+    for (size_t i = 0; i < doctors->size(); i++){
+        if ((*doctors)[i].get_specialty() == s){
+            cout << (*doctors)[i].get_firstName() << " " << (*doctors)[i].get_lastName() << endl;
+        }
+        
+    }
+}
+
+void Hospital::Show_Assigned_Doctor(long int patientID){
+    
+    long int doctorID;
+    
+    for (size_t i = 0; i < patients->size(); i++){
+        if ((*patients)[i].get_assignedDoctor() == patientID){
+            doctorID = (*patients)[i].get_assignedDoctor();
+        }
+    }
+
+    for (size_t i = 0; i < doctors->size(); i++){
+        if ((*doctors)[i].get_ID() == doctorID){
+            cout << (*doctors)[i].get_firstName() << " " << (*doctors)[i].get_lastName() << endl;
+        }
+    }
+}  
+
 // Show information about the patient with a given ID
 void Hospital::Show_Patient_by_Id(long int id){
     for (int i =0; i<(int)ptr->size();++i{
