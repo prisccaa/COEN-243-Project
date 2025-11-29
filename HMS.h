@@ -39,6 +39,7 @@ class Patient{
 
         // Default Constructor with parameter initialization
         Patient();
+        Patient() : firstName(""), lastName(""), ID(0), assignedDoctor(0), dateOfBirth(""), bloodType(""), diagnosis(""), dateOfAdmission(""), dischargeDate("-1") {}
         Patient(const string &firstName, 
         const string &lastName,
         long ID,
@@ -87,6 +88,7 @@ class Doctor{
         void set_performanceBonus(double pb);
 
         Doctor();
+        Doctor() : firstName(""), lastName(""), ID(0), specialty(""), yearOfExperience(0), baseSalary(0.0), bonusPercentage(0.0) {}
         Doctor(const string &firstName, 
         const string &lastName,
         long ID,
