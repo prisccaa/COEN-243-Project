@@ -6,6 +6,17 @@
 #include <vector>
 using namespace std;
 
+// Default constructor for Patient
+Patient::Patient()
+    : firstName(""), lastName(""), ID(0), assignedDoctor(-1),
+      dateOfBirth(""), bloodType(""), diagnosis(""),
+      dateOfAdmission(""), dischargeDate("-1") {}
+
+// Default constructor for Doctor
+Doctor::Doctor()
+    : firstName(""), lastName(""), ID(0), specialty(""),
+      yearOfExperience(0), baseSalary(0.0), bonusPercentage(0.0) {}
+      
 // DEFINING METHODS
 // FOR PATIENT CLASS
 
@@ -152,42 +163,43 @@ Hospital::Hospital(string patientFileName, string doctorFileName){
     }
     else{
 
-    int numDoctors;
-    docFile >> numDoctors;
+        int numDoctors;
+        docFile >> numDoctors;
 
-    for (int i = 0; i < numDoctors; i++){
-        
-        Doctor d;
-        
-        string fN;
-        string lN;
-        long int id;
-        string spec;
-        int yoe;
-        double bs;
-        double pb;
-        
-        docFile >> fN >> lN >> id >> spec >> yoe >> bs >> pb;
+        for (int i = 0; i < numDoctors; i++){
+            
+            Doctor d;
+            
+            string fN;
+            string lN;
+            long int id;
+            string spec;
+            int yoe;
+            double bs;
+            double pb;
+            
+            docFile >> fN >> lN >> id >> spec >> yoe >> bs >> pb;
 
-        d.set_firstName(fN);
-        d.set_lastName(lN);
-        d.set_ID(id);
-        d.set_specialty(spec);
-        d.set_yearOfExperience(yoe);
-        d.set_baseSalary(bs);
-        d.set_performanceBonus(pb);
+            d.set_firstName(fN);
+            d.set_lastName(lN);
+            d.set_ID(id);
+            d.set_specialty(spec);
+            d.set_yearOfExperience(yoe);
+            d.set_baseSalary(bs);
+            d.set_performanceBonus(pb);
 
-        doctors->push_back(d);
-    }
-    patFile.close();
-    docFile.close();
+            doctors->push_back(d);
+        }   
+        patFile.close();
+        docFile.close();
     
     }
 }
 
-Hospital::~Hospital() {
- delete patients;
-    delete doctors; }
+Hospital::~Hospital(){
+    delete patients;
+    delete doctors; 
+}
 
 // Member functions
     // find oldest Patient:
