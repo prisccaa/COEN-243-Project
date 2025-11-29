@@ -184,10 +184,9 @@ Hospital::Hospital(const string& doctorFile, const string& patientFile){
     
 }
 
-// Hospital::~Hospital() {
-//     delete patients;
-//     delete doctors;
-// }
+Hospital::~Hospital() {
+ delete patients;
+    delete doctors; }
 
 // Member functions
     // find oldest Patient:
@@ -229,6 +228,7 @@ if (!(*patients)[i].IsDicharged()){
 }
 return count;
 }
+    //Doctors By Speciality
 
 void Hospital::Doctors_By_Specialty(string& s){
 
@@ -272,18 +272,18 @@ void Hospital::Show_Assigned_Patients(long int doctorID){
 
 // Show information about the patient with a given ID
 void Hospital::Show_Patient_by_Id(long int id){
-    for (int i =0; i<(int)ptr->size();++i{
-        if ((*ptr)[i].get_ID()==id){
-        (*ptr)[i].Print_Patient_Info();
+    for (int i =0; i<(int)patients->size();++i{
+        if ((*patients)[i].get_ID()==id){
+        (*patients)[i].Print_Patient_Info();
         return;}
 }
 count<<"No patient has the provided ID"<<enl;
 }
 // Show information about the doctor with a given ID
 void Hospital::Show_Doctor_by_ID(long int id) {
-    for (int i = 0; i < (int)dptr->size(); ++i) {
-        if ((*dptr)[i].get_ID() == id) {
-            (*dptr)[i].Print_Doctor_Info();
+    for (int i = 0; i < (int)doctors->size(); ++i) {
+        if ((*doctors)[i].get_ID() == id) {
+            (*doctos)[i].Print_Doctor_Info();
             return;
         }
     }
