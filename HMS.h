@@ -39,15 +39,6 @@ class Patient{
 
         // Default Constructor with parameter initialization
         Patient();
-        // Patient(const string &firstName, 
-        // const string &lastName,
-        // long ID,
-        // long assignedDoctor,
-        // const string &dateOfBirth,
-        // const string &bloodType,
-        // const string &diagnosis,
-        // const string &dateOfAdmission, 
-        // const string &dischargeDate);
 
         // Methods, only DECLARING them
         // Checks if the patient is discharged:
@@ -87,14 +78,6 @@ class Doctor{
         void set_performanceBonus(double pb);
 
         Doctor();
-        // Doctor(const string &firstName, 
-        // const string &lastName,
-        // long ID,
-        // long specialty,
-        // const string &yearOfExperience,
-        // const string &baseSalary,
-        // const string &diagnosis,
-        // const string &bonusPercentage);
 
         // Methods, just DECLARING them
         double CalculateCompensation();
